@@ -1,19 +1,17 @@
-# Result Tables
+# Results Directory
 
-This folder contains paper-facing summary tables rather than raw training artifacts.
+This folder is intentionally lightweight in the public release.
 
-## Included Tables
+## Purpose
 
-- main benchmark summary
-- encoder-family comparison
-- ablation and robustness summaries
-- repeated cross-validation summary
-- leakage-controlled PubMedQA external validation summaries
+- provide a stable location for regenerated outputs
+- keep the repository structure compatible with the released scripts
+- avoid shipping manuscript-facing result tables directly
 
-## Interpretation
+## Not Included
 
-The released tables support a task-dependent interpretation:
+- paper summary tables
+- remote checkpoints
+- transient server-side run artifacts
 
-- focused adaptation is competitive on the original anchor task
-- robustness checks reduce the strength of any broad superiority claim
-- replay-regularized focused adaptation provides the strongest external validation signal
+You can regenerate outputs into this directory by rerunning the released configs and scripts.

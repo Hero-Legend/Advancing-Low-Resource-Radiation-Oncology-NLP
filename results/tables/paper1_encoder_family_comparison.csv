@@ -1,6 +1,0 @@
-system,model_family,setting,seed_protocol,test_macro_f1_mean,test_macro_f1_std,test_accuracy_mean,notes
-pubmedbert_weighted,PubMedBERT,base weighted fine-tuning,"7,13,21,42,87",0.6360379818026877,0.058610625465647875,0.7900000000000001,existing anchor-task multiseed baseline
-pubmedbert_full_adaptation_weighted,PubMedBERT,full public adaptation + weighted fine-tuning,"7,13,21,42,87",0.6180290297937356,0.0641480285242202,0.79,existing anchor-task multiseed ablation
-pubmedbert_focused_adaptation_weighted,PubMedBERT,focused public adaptation + weighted fine-tuning,"7,13,21,42,87",0.659992784992785,0.11831917262651387,0.8300000000000001,existing main proposed method
-biolinkbert_weighted,BioLinkBERT,base weighted fine-tuning,"7,13,21,42,87",0.6070261437908496,0.08875384722404717,0.8,new biomedical encoder baseline
-bioclinicalbert_weighted,Bio_ClinicalBERT,base weighted fine-tuning,"7,13,21,42,87",0.5509416748126424,0.09212802177478063,0.79,new clinical encoder baseline

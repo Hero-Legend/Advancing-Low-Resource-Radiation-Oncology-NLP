@@ -1,4 +1,0 @@
-﻿reference_system,comparison_system,reference_wins,comparison_wins,ties,p_value
-pubmedbert_focused_adaptation_weighted,pubmedbert_weighted,2,1,17,1.0
-pubmedbert_focused_adaptation_weighted,biolinkbert_weighted,2,2,16,1.0
-pubmedbert_focused_adaptation_weighted,bioclinicalbert_weighted,1,1,18,1.0
