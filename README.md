@@ -4,6 +4,7 @@
 ![Data](https://img.shields.io/badge/Data-Public%20Only-1f9d55)
 ![Domain](https://img.shields.io/badge/Domain-Radiation%20Oncology%20NLP-b45f06)
 ![Framework](https://img.shields.io/badge/Framework-PyTorch%20%7C%20Transformers-7a3ff2)
+![License](https://img.shields.io/badge/License-MIT-111111)
 
 Public reproducibility package for the study:
 
@@ -118,6 +119,10 @@ The released scripts assume a Python-based machine learning workflow centered on
 - scikit-learn
 
 See `requirements.txt` for the dependency list used in the public package.
+
+## License
+
+This repository is released under the MIT License. See `LICENSE` for details.
 
 ## Data Sources
 
