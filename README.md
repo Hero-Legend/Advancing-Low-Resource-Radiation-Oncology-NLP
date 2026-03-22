@@ -1,5 +1,10 @@
 # Advancing Low-Resource Radiation Oncology NLP
 
+![Study Type](https://img.shields.io/badge/Study-Reproducibility%20Package-2f6fed)
+![Data](https://img.shields.io/badge/Data-Public%20Only-1f9d55)
+![Domain](https://img.shields.io/badge/Domain-Radiation%20Oncology%20NLP-b45f06)
+![Framework](https://img.shields.io/badge/Framework-PyTorch%20%7C%20Transformers-7a3ff2)
+
 Public reproducibility package for the study:
 
 **Advancing Low-Resource Radiation Oncology NLP: Keyword-Focused Domain Adaptation via Public Corpora**
@@ -10,7 +15,7 @@ This repository releases the code, configurations, keyword manifest, and process
 
 The project asks a focused question: when does narrow, radiation-oncology-specific adaptation help low-resource clinical NLP, and when does it fail? Rather than treating in-domain adaptation as universally beneficial, the study examines corpus construction, robustness, and external generalization under privacy-preserving constraints.
 
-## Study Scope
+## Scope
 
 The released workflow covers:
 
@@ -21,7 +26,7 @@ The released workflow covers:
 - robustness analyses, including repeated cross-validation and small-sample checks
 - leakage-controlled external validation with PubMedQA
 
-## Released Artifacts
+## Included
 
 ### Code
 
@@ -53,7 +58,7 @@ The released workflow covers:
 - `results/`
   - placeholder directory for regenerated outputs
 
-## Intentionally Not Released
+## Not Included
 
 This repository does **not** ship:
 
@@ -84,7 +89,7 @@ Those artifacts are omitted to keep the public package clean, lightweight, and f
     \-- rond/
 ```
 
-## Reproducibility Path
+## Quick Start
 
 Recommended order:
 
@@ -125,4 +130,10 @@ This repository uses public or public-derived resources only. Please retain the 
 
 ## Citation
 
-If you use this repository, please cite the corresponding paper once the final bibliographic entry is available.
+If you use this repository, please cite the corresponding paper and project metadata in [`CITATION.cff`](./CITATION.cff).
+
+## Release Notes
+
+- Public package goal: reproducibility rather than manuscript mirroring
+- Paper-facing tables and manuscript snapshots are intentionally omitted
+- See [`RELEASE_CHECKLIST.md`](./RELEASE_CHECKLIST.md) for the release-maintenance checklist

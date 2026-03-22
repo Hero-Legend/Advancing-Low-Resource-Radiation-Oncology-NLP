@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "Advancing Low-Resource Radiation Oncology NLP: Keyword-Focused Domain Adaptation via Public Corpora"
+message: "If you use this repository, please cite the accompanying paper and the repository metadata."
+type: software
+authors:
+  - family-names: Jia
+    given-names: Yaxun
+    email: jia_yaxun@163.com
+  - family-names: Yuan
+    given-names: Zhu
+    email: yz761443043@163.com
+  - family-names: Zhu
+    given-names: Lian
+    email: lvxiuzi2013@hotmail.com
+  - family-names: Xiang
+    given-names: Zuo-lin
+    email: xiangzuolinmd@hotmail.com
+repository-code: "https://github.com/Hero-Legend/Advancing-Low-Resource-Radiation-Oncology-NLP"
+url: "https://github.com/Hero-Legend/Advancing-Low-Resource-Radiation-Oncology-NLP"
+abstract: "Public reproducibility package for a radiation oncology NLP study on keyword-focused domain adaptation, robustness analysis, and leakage-controlled external validation."
+keywords:
+  - radiation oncology
+  - clinical NLP
+  - domain adaptation
+  - low-resource learning
+  - public corpora
+license: "NOASSERTION"
