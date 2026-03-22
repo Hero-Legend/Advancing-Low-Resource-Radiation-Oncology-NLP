@@ -1,0 +1,7 @@
+[
+  {
+    "name": "biolinkbert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/BioLinkBERT",
+    "use_class_weights": true
+  }
+]

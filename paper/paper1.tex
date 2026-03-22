@@ -1,0 +1,672 @@
+%% 
+%% Copyright 2019-2021 Elsevier Ltd
+%% 
+%% This file is part of the 'CAS Bundle'.
+%% --------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'CAS Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for cas-dc documentclass for 
+%% double column output.
+
+\documentclass[a4paper,fleqn]{cas-dc}
+
+% If the frontmatter runs over more than one page
+% use the longmktitle option.
+
+%\documentclass[a4paper,fleqn,longmktitle]{cas-dc}
+
+%\usepackage[numbers]{natbib}
+%\usepackage[authoryear]{natbib}
+\usepackage[authoryear, sort&compress,longnamesfirst]{natbib}
+
+\usepackage{CJKutf8}
+\usepackage{graphicx}
+\usepackage{graphbox}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{graphicx} 
+\usepackage{algpseudocode}   
+\usepackage{diagbox}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{subfig}
+\usepackage{threeparttable}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+
+\makeatletter  
+\newif\if@restonecol  
+\makeatother  
+\let\algorithm\relax  
+\let\endalgorithm\relax  
+%\usepackage[ruled]{algorithm2e}
+\usepackage[ruled,vlined]{algorithm2e}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
+
+% 定义符号
+\newcommand{\cmark}{\textcolor{green!60!black}{\ding{51}}} % 绿色的对号
+\newcommand{\xmark}{\textcolor{red!80!black}{\ding{55}}}   % 红色的叉号
+
+
+%%%Author macros
+\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+\tsc{WGM}
+\tsc{QE}
+%%%
+
+% Uncomment and use as if needed
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newdefinition{rmk}{Remark}
+
+%\newproof{pf}{Proof}
+%\newproof{pot}{Proof of Theorem \ref{thm}}
+
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+% Short title
+\shorttitle{}    
+
+% Short author
+
+\shortauthors{Z Yuan, H Zhang and H Yang}  
+
+% Main title of the paper
+\title [mode = title]{Advancing Low-Resource Radiation Oncology NLP: Keyword-Focused Domain Adaptation via Public Corpora}  
+
+\author[1]{Yaxun Jia}
+\cormark[1]
+\ead{jia_yaxun@163.com}
+\credit{Conceptualization, Methodology, Software, Validation, Writing - Original Draft}
+
+\author[1]{Zhu Yuan}
+\cormark[1]
+\ead{yz761443043@163.com}
+\credit{Conceptualization, Methodology, Software, Validation, Writing - Original Draft, Project administration, Funding acquisition}
+
+\author[1]{Lian Zhu}
+\ead{lvxiuzi2013@hotmail.com}
+\credit{Conceptualization, Software, Validation, Writing - Review \& Editing}
+
+\author[1]{Zuo-lin Xiang}
+\cormark[2]
+\ead{xiangzuolinmd@hotmail.com}
+\credit{Investigation, Formal analysis, Conceptualization, Software, Validation, Writing - Review \& Editing, Funding acquisition}
+
+
+
+
+\address[1]{Department of Radiation Oncology, Shanghai East Hospital, Tongji University School of Medicine, 200120, Shanghai, China}
+\address[2]{Department of Information Management, The National Police University for Criminal Justice, Baoding 071000, China}
+
+
+
+
+\cortext[1]{These authors contributed equally to this work.}
+\cortext[2]{Corresponding author}
+
+
+
+% Here goes the abstract
+\begin{abstract}	
+Radiation oncology relies on highly specialized narratives containing treatment-modality, dosimetric, and medical-physics terminology, yet robust Natural Language Processing (NLP) for this micro-domain remains constrained by data scarcity, privacy barriers, and limited public benchmarks. We investigate whether public-data-only domain adaptation can improve low-resource radiation oncology NLP, and more importantly, under what conditions such adaptation remains beneficial. We construct a privacy-preserving adaptation pipeline from NCI PDQ and PMC documents, using keyword-focused local semantic windowing to build a radiation-oncology-specific corpus for continued pretraining of PubMedBERT. We then evaluate weighted baseline, full-corpus adaptation, focused adaptation, and replay-regularized focused adaptation across ROND benchmark tasks, robustness analyses, leakage-controlled external validation on PubMedQA, and deployment-oriented comparisons with chat-style Large Language Models (LLMs). On the original anchor task, focused adaptation improves mean macro-F1 from 0.6360 to 0.6600, but aligned multi-task reruns, token-budget-matched comparisons, and repeated cross-validation show that these gains are task-dependent rather than uniformly dominant. The strongest external generalization signal emerges from a lightweight replay-regularized variant, which achieves the best mean test macro-F1 on held-out PubMedQA (0.4558 versus 0.4456 for the weighted PubMedBERT baseline). These findings indicate that public radiation-oncology adaptation is most useful when corpus purity, task structure, and generalization constraints are jointly considered, rather than when narrow specialty adaptation is treated as universally superior. In deployment terms, lightweight local encoders remain attractive for high-frequency short-text workflows because they preserve low latency and deterministic parsing compared with API-based LLMs. This work provides a reproducible, privacy-safe framework and a more realistic boundary analysis for low-resource clinical NLP in radiation oncology.
+\end{abstract}
+
+% Use if graphical abstract is present
+%\begin{graphicalabstract}
+%\includegraphics{}
+%\end{graphicalabstract}
+
+% Research highlights
+%\begin{highlights}
+
+%\item We propose MVCL-NER, a novel multi-view contrastive learning framework that captures the inherent linguistic complexity of legal texts from lexical, structural, and semantic perspectives. This approach enhances the model's robustness and generalization, making it particularly suitable for the diverse and evolving nature of legal systems.
+%\item We introduce an adaptive negative sampling strategy and focal loss to explicitly address the severe long-tail distribution issue in judicial datasets. Our method provides stronger learning signals for rare yet critical entities, which are often underrepresented but hold significant value in legal information extraction.
+%\item We rigorously evaluate MVCL-NER on the CAIL2021 dataset, achieving a state-of-the-art F1-score of 92.31\%. The demonstrated superior performance and statistical significance highlight the framework's practical utility for building robust computational law applications and its broader contribution to the field of computational social systems.
+
+%\end{highlights}
+
+% Keywords
+% Each keyword is seperated by \sep
+\begin{keywords}
+Radiation Oncology\sep
+Natural Language Processing\sep
+Domain Adaptation\sep
+Low-Resource\sep 
+Public Corpora\sep
+\end{keywords}
+
+\maketitle
+
+%Main text
+\section{Introduction}\label{sec:introduction}
+\iffalse
+NATURAL Language Processing (NLP) has catalyzed transformative advancements in clinical informatics, enabling the automated extraction of actionable insights from electronic health records (EHRs) and medical literature~\cite{thirunavukarasu2023large, bilal2025nlp}. However, the deployment of robust NLP systems in hyper-specialized clinical sub-domains, such as radiation oncology, remains a formidable challenge~\cite{khanmohammadi2025integrating, lin2024natural}. Radiation oncology narratives are characterized by extremely dense physical parameters (e.g., fractional dosing, beam energy) and idiosyncratic treatment modalities (e.g., stereotactic body radiation therapy [SBRT], volumetric modulated arc therapy [VMAT])~\cite{huang2024unsupervised}. General biomedical language models, such as PubMedBERT~\cite{gu2021domain}, often suffer from severe domain shift when applied directly to these texts, as their pretraining distributions are diluted by broader, non-radiotherapy biomedical literature~\cite{laparra2021review}.
+
+Compounding this domain shift is the critical bottleneck of data scarcity. Unlike general medicine, large-scale, annotated corpora specific to radiation oncology are virtually non-existent in the public domain~\cite{lin2024natural}. While large institutions possess extensive EHR repositories, utilizing such data for continued model pretraining is severely restricted by stringent patient privacy regulations (e.g., HIPAA) and the high computational cost of rigorous de-identification~\cite{hou2025fine, aljohani2025comprehensive}. Consequently, researchers are often forced to rely on publicly available data. However, a naive volumetric approach—aggregating all available broad oncology literature—inadvertently introduces semantic noise, diluting the localized, high-density representations required for downstream clinical reasoning~\cite{ding20253ds, kim2025medical}.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.98\linewidth]{}
+%	\caption{}
+%	\label{fig:motivation}
+%\end{figure}
+
+To bridge this gap, this study proposes and formally evaluates a strict, public-data-only domain adaptation paradigm centered on the principle of data purity over volume~\cite{zhou2023lima}. We hypothesize that in extremely low-resource, specialized domains, constructing a high-signal-to-noise ratio (SNR) corpus via keyword-focused local semantic windowing is significantly more effective than broad-spectrum domain adaptation. By anchoring extraction windows around expert-defined terminology from public repositories (NCI PDQ and PMC open-access supplements), we engineer a condensed corpus that maximizes domain-specific information density prior to masked language modeling. Furthermore, a significant limitation of existing clinical NLP literature is the tendency to report universal superiority without delineating task-specific failure modes~\cite{wornow2023shaky}. To address this, we conduct a rigorous structural boundary analysis utilizing the ROND benchmark. We evaluate our adapted encoder across structurally distinct tasks: short-text therapy classification, logic reasoning, and complex medical-physics question answering (QA). Crucially, we contextualize our findings against the emerging paradigm of generative Large Language Models (LLMs), not merely on performance metrics, but through a pragmatic lens of hospital IT deployment, quantifying the critical trade-offs between zero-shot reasoning capabilities, inference latency, and parsing stability~\cite{jiang2023health, moor2023foundation}. 
+
+The main contributions of this work are summarized as follows:
+\begin{itemize}
+	\item We establish a fully reproducible, privacy-preserving domain adaptation protocol for low-resource radiation oncology NLP, strictly constraining the adaptation sources to public repositories to eliminate EHR privacy bottlenecks.
+	\item We propose a keyword-focused, localized semantic windowing strategy for continued pretraining. We empirically demonstrate that this targeted approach outperforms naive full-corpus adaptation, proving that localized data purity yields superior representations for dense clinical texts.
+	\item We define the explicit operational boundaries of focused domain adaptation through multi-task evaluation. We document positive transfer on label-implicit anchor tasks (classification and logic reasoning) while formally analyzing its negative transfer on long-context, structurally complex QA tasks.
+	\item We provide a comprehensive deployment-centric benchmark against commercial chat-style LLM APIs (e.g., DeepSeek, Qwen). By analyzing prompt sensitivity and elapsed-cost proxies, we establish a computational frontier demonstrating that customized, lightweight encoders remain the optimal architecture for high-frequency, short-text clinical tasks.
+\end{itemize}
+\fi
+
+NATURAL Language Processing (NLP) has catalyzed major advances in clinical informatics, enabling the automated extraction of actionable information from electronic health records and biomedical literature~\cite{thirunavukarasu2023large, bilal2025nlp}. However, robust NLP in hyper-specialized sub-domains such as radiation oncology remains difficult~\cite{khanmohammadi2025integrating, lin2024natural}. Radiation oncology narratives are unusually dense in treatment terminology, dosimetric parameters, and medical-physics concepts, while large public task corpora for this niche remain scarce. As a result, general biomedical encoders often face substantial domain shift, yet institution-specific adaptation on private clinical text is difficult to reproduce and constrained by patient privacy.
+
+This tension motivates a public-data-only adaptation question: can carefully filtered radiation-oncology text improve low-resource specialty NLP without relying on proprietary records, and if so, under what conditions? Rather than assuming that more in-domain text is always better, we study whether adaptation quality depends on how the corpus is constructed, how much contextual material is retained, and whether narrow specialty adaptation should be regularized to preserve broader reasoning ability. These questions matter because many clinical NLP papers still report broad superiority claims without clearly identifying task boundaries, robustness limits, or the trade-off between local specialization and external generalization~\cite{wornow2023shaky}.
+
+To address this gap, we build a public adaptation pipeline from NCI PDQ and PMC documents, using keyword-focused local semantic windowing to create a radiation-oncology-specific corpus for continued pretraining. We then evaluate the resulting models on structurally distinct tasks from the ROND benchmark and extend the study with window-size ablation, encoder-family comparison, token-budget-matched reruns, repeated cross-validation, replay-regularized adaptation, and leakage-controlled external validation on PubMedQA. This expanded design lets us test not only whether focused public adaptation can help, but also when its benefits disappear, when broader replay regularization becomes useful, and how these encoder regimes compare with chat-style Large Language Models (LLMs) under deployment-oriented constraints such as latency and parsing stability~\cite{jiang2023health, moor2023foundation}.
+
+The main contributions of this work are summarized as follows:
+\begin{itemize}
+	\item We establish a fully reproducible, privacy-preserving domain adaptation protocol for low-resource radiation oncology NLP, strictly constraining adaptation sources to public repositories and avoiding institution-specific EHR dependence.
+	\item We propose a keyword-focused, localized semantic windowing strategy for continued pretraining and show through window-size, token-budget, and encoder-family analyses that corpus construction is a meaningful methodological lever rather than a superficial preprocessing detail.
+	\item We define the operational boundaries of public radiation-oncology adaptation through aligned multi-task evaluation and robustness analyses, showing that focused adaptation is competitive but task-dependent rather than uniformly superior across all settings.
+	\item We demonstrate that leakage-controlled, train-only replay regularization provides the strongest external generalization signal in our study, outperforming the weighted PubMedBERT baseline and the pure focused/full matched adaptation variants on held-out PubMedQA evaluation.
+	\item We provide a comprehensive deployment-centric benchmark against commercial chat-style LLM APIs (e.g., DeepSeek, Qwen), showing that lightweight local encoders retain major advantages for high-frequency short-text workflows in latency and parsing stability.
+\end{itemize}
+
+The remainder of this paper is organized as follows: Section \ref{Related work} reviews related work. Section \ref{Methodology} presents the focused adaptation pipeline and public corpus construction strategy. Section \ref{exp_setup} introduces the experimental setup. Section \ref{Experimental Results Analysis} reports benchmark, ablation, robustness, external-validation, and deployment results. Section \ref{Discussion} discusses the methodological implications, deployment trade-offs, and remaining limitations. Finally, Section \ref{conclusion and future work} concludes the paper.
+
+
+\section{Related Work} \label{Related work}
+
+\subsection{Biomedical Language Models and Micro-Domain Shift}
+The advent of domain-specific Pre-trained Language Models (PLMs) has significantly advanced clinical Natural Language Processing. Models such as BioBERT~\cite{lee2020biobert}, ClinicalBERT~\cite{alsentzer2019publicly}, and PubMedBERT~\cite{gu2021domain} have demonstrated that pretraining on domain-specific corpora (e.g., PubMed abstracts, MIMIC-III clinical notes) yields superior representations compared to general-domain models. PubMedBERT, in particular, established that pretraining from scratch on biomedical text mitigates the vocabulary mismatch inherent in generic PLMs.
+
+However, existing literature predominantly treats "biomedicine" or "oncology" as monolithic domains. When applied to hyper-specialized sub-domains like radiation oncology—which possesses an idiosyncratic lexicon of dosimetric parameters, beam configurations, and radiobiological phenomena—these broad biomedical models still experience substantial representation dilution~\cite{lehman2023we}. Previous attempts to address this micro-domain shift have heavily relied on continued pretraining utilizing proprietary, institutional Electronic Health Records (EHRs)~\cite{wornow2023shaky}. While effective, this reliance poses severe reproducibility challenges and patient privacy risks. Our work diverges by strictly constraining the adaptation process to public literature, ensuring a fully reproducible, privacy-preserving paradigm for specialty-specific clinical NLP~\cite{xie2024me, tariq2025open, builtjes2025leveraging}.
+
+\subsection{Data-Centric NLP and Low-Resource Corpus Construction}
+In low-resource regimes where vast pretraining corpora are unavailable, the focus of NLP research has increasingly shifted toward Data-Centric AI—prioritizing data quality and relevance over sheer volume~\cite{zha2025data}. Standard domain adaptation typically employs naive volumetric scaling, aggregating all tangentially related documents to maximize token counts~\cite{yao2024readme}. However, recent studies in corpus linguistics suggest that in highly technical domains, injecting broad but irrelevant text introduces semantic noise that degrades the performance of downstream classifiers~\cite{zhu2024towards}.To extract high-quality subsets, prior works have utilized distant supervision or term-frequency inverse document frequency (TF-IDF) heuristic filtering~\cite{gavrilescu2025techniques}. Yet, these methods often extract isolated sentences, stripping away the localized syntactic context crucial for bidirectional encoders. To address this, we introduce a keyword-anchored semantic windowing technique. Unlike naive sentence extraction, our approach preserves a contiguous local neighborhood ($w=2$) around critical domain triggers. This methodology explicitly operationalizes the hypothesis that maximizing the Signal-to-Noise Ratio (SNR) in a micro-corpus yields more robust encoder representations than unconstrained volumetric adaptation.
+
+\subsection{Large Language Models in Clinical Deployment}
+The landscape of clinical NLP is currently being reshaped by generative Large Language Models (LLMs), such as GPT-4~\cite{islam2025gpt}, Med-PaLM~\cite{singhal2023large}, and advanced open-weight architectures~\cite{wang2025evaluation} like Llama-3~\cite{grattafiori2024llama}, Qwen~\cite{bai2023qwen}, and DeepSeek~\cite{liu2024deepseek}. These models exhibit remarkable zero-shot and few-shot reasoning capabilities, largely bypassing the need for task-specific fine-tuning. Consequently, recent literature frequently positions LLMs as universal solutions for medical text summarization, diagnostic reasoning, and complex QA~\cite{thirunavukarasu2023large}.
+
+Despite their architectural superiority, the transition of LLMs into routine hospital IT deployment is severely bottlenecked by practical engineering constraints. Clinical informatics systems processing millions of records daily require ultra-low inference latency, deterministic parsing stability, and minimal computational overhead~\cite{jiang2023health}. Furthermore, relying on commercial API-based LLMs raises substantial data governance and HIPAA-compliance concerns. While current studies often benchmark LLMs solely on accuracy~\cite{saha2026transforming}, our research addresses a critical gap by formulating a deployment-centric trade-off analysis. By evaluating both our adapted encoder and contemporary LLMs across tasks of varying structural complexity (classification vs. QA), we provide empirical guidelines on when to leverage the zero-shot reasoning of LLMs and when to deploy highly efficient, customized local encoders.
+
+\section{Methodology} \label{Methodology}
+
+The central premise of our work is that in extreme low-resource and hyper-specialized domains such as radiation oncology, data volume is strictly secondary to data purity. To formalize this, we propose a high-Signal-to-Noise Ratio (SNR) domain adaptation pipeline. This methodology consists of an algorithmic semantic distillation phase followed by cost-sensitive continuous representation learning.
+
+\subsection{Overview}
+To systematically address the dual bottlenecks of severe data scarcity and micro-domain shift in radiation oncology NLP, we propose a privacy-preserving, data-centric adaptation framework. Rather than relying on restricted institutional EHRs or applying broad, noisy volumetric pretraining, our architecture is predicated on the hypothesis that maximizing domain-specific information density yields superior encoder representations. The proposed pipeline, conceptually illustrated in Figure 2, operates through four sequential stages:
+
+%\begin{figure*}
+%	\centering
+%	\includegraphics[width=0.95\linewidth]{}
+%	\caption{}
+%	\label{overview}
+%\end{figure*}
+
+\begin{itemize}
+	\item \textbf{Public-Data Bounding}: Establishing a strict perimeter around publicly accessible literature to eliminate patient privacy risks.
+	\item \textbf{Semantic Distillation}: Engineering a high-Signal-to-Noise Ratio (SNR) micro-corpus via an algorithmic keyword-centric semantic windowing mechanism.
+	\item \textbf{Representation Alignment}: Aligning the latent semantic space of a foundational biomedical encoder to the hyper-specialized target domain via constrained continuous pretraining.
+	\item \textbf{Task Optimization}: Optimizing the adapted encoder for specific, heavily imbalanced downstream clinical tasks utilizing cost-sensitive supervised fine-tuning.
+\end{itemize}
+
+\subsection{Formalization of the Public-Data Constraint}
+Let the universal set of available clinical text be denoted as $\mathcal{U}$. In standard clinical NLP, models are adapted on institutional EHRs, $\mathcal{D}_{\text{EHR}} \subset \mathcal{U}$. However, due to rigorous patient privacy regulations (e.g., HIPAA) and the absence of such datasets in the public domain, we strictly constrain our accessible hypothesis space to public medical literature, $\mathcal{D}_{\text{pub}}$.
+
+We aggregate the National Cancer Institute (NCI) Physician Data Query (PDQ) database and a targeted subset of PubMed Central (PMC) open-access radiation oncology supplements. The resulting raw corpus, $\mathcal{D}_{\text{raw}} \subset \mathcal{D}_{\text{pub}}$, encompasses 192 broad oncology documents, totaling approximately $21.8 \times 10^6$ characters.
+
+\subsection{High-SNR Keyword-Centric Semantic Windowing}
+To extract a focused subset ($\mathcal{D}_{\text{focused}}$) that maximizes domain information density, we formalized a highly transparent, deterministic semantic windowing procedure.
+
+Rather than relying on broad, automatically generated medical ontologies (e.g., MeSH or RadLex), which often introduce tangentially related terms, we utilized a manually curated, task-oriented lexicon defined by domain expertise. This manifest comprises strictly 30 explicit terms, systematically categorized into four primary domains: treatment modalities (e.g., proton therapy, SBRT), delivery techniques (e.g., IMRT, VMAT), radiation-induced toxicities (e.g., radiation pneumonitis), and site-specific expressions (e.g., pelvic radiotherapy). The complete manifest is provided in the Supplementary Material to ensure exact reproducibility.
+
+Each source document is first tokenized into an ordered sequence of sentences utilizing punctuation-based boundaries. We define an indicator function based on case-insensitive substring matching against our curated lexicon. For every sentence triggering a keyword match, we do not merely extract the isolated sentence. Instead, we retain a localized bidirectional context window of size $w = \pm 2$ (i.e., the matched sentence, alongside the preceding two and following two sentences). To elegantly resolve overlaps, overlapping windows within the same document are naturally merged by computing the union of their retained sentence indices before concatenation.
+
+The windowing algorithm operates strictly at the sentence level rather than utilizing fixed token radii (e.g., $\pm 512$ tokens), preserving natural syntactic boundaries. Each source document is tokenized into sentences using punctuation boundaries. For every sentence triggering a case-insensitive keyword match, we retain a localized bidirectional context window of size $w = \pm 2$ sentences (i.e., the matched sentence, alongside the preceding two and following two sentences). Overlapping windows within the same document are naturally merged by computing the union of their retained sentence indices.
+
+To suppress fragmented context, concatenated segments shorter than 200 characters are discarded. A secondary compilation normalizes whitespace and removes exact duplicate texts utilizing SHA-256 hashing. As detailed in Table I, this multi-stage distillation condenses the raw $21.8 \times 10^6$ character corpus down to a highly dense $3.46 \times 10^6$ characters, purposefully engineered to provide a high-SNR foundation for Masked Language Modeling.
+
+Rather than relying on broad, automatically generated medical ontologies (e.g., MeSH or RadLex) which often introduce tangentially related terms, we utilized a manually curated, task-oriented lexicon defined by domain expertise. This manifest comprises strictly 30 explicit terms, systematically categorized into four primary domains: treatment modalities (e.g., proton therapy, SBRT), delivery techniques (e.g., IMRT, VMAT), radiation-induced toxicities (e.g., radiation pneumonitis), and site-specific expressions (e.g., pelvic radiotherapy). The complete manifest is provided in the Supplementary Material to ensure exact reproducibility.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Corpus Scale Statistics: Raw vs. Focused Adaptation}
+	\label{tab:corpus_statistics}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{Corpus Variant} & \textbf{Document Count} & \textbf{Character Count} & \textbf{Token Count\textsuperscript{a}} \\ \midrule
+		Raw Public Corpus ($\mathcal{D}_{\text{raw}}$) & 192 & 21,835,419 & 4,863,386 \\
+		Focused Corpus ($\mathcal{D}_{\text{focused}}$) & 192 & 3,457,418 & 730,897 \\ \midrule
+		\textit{Ablation Variant:} & & & \\
+		PDQ-only Focused Corpus & 182 & 3,437,760 & 727,189 \\ \bottomrule
+		\multicolumn{4}{l}{\footnotesize \textsuperscript{a} Token counts were computed using the same PubMedBERT tokenizer employed in continued pretraining.} \\
+	\end{tabular}}
+\end{table}
+
+
+The entire procedure is detailed in Algorithm 1.
+
+\begin{algorithm}[htbp]
+	\caption{Keyword-Focused Semantic Distillation}\label{alg:semantic_distillation}
+	\KwIn{Raw corpus $\mathcal{D}_{\text{raw}}$, Keyword set $\mathcal{K}$, Window size $w=2$, Min length $\tau_{\text{len}}=200$}
+	\KwOut{High-SNR focused corpus $\mathcal{D}_{\text{focused}}$}
+	Initialize empty set $\mathcal{D}_{\text{focused}} \leftarrow \emptyset$\;
+	Tokenize $\mathcal{D}_{\text{raw}}$ into sentence array $S = [s_1, s_2, \dots, s_N]$\;
+	\For{$i = 1$ \KwTo $N$}{
+		\If{$\mathbb{I}(s_i, \mathcal{K}) == 1$}{
+			Define start index $a = \max(1, i-w)$\;
+			Define end index $b = \min(N, i+w)$\;
+			Extract local window $W_i = \text{Concatenate}(S[a \dots b])$\;
+			\If{$\text{Length}(W_i) \geq \tau_{\text{len}}$}{
+				$\mathcal{D}_{\text{focused}} \leftarrow \mathcal{D}_{\text{focused}} \cup \{ W_i \}$\;
+			}
+		}
+	}
+	Remove exact duplicate segments from $\mathcal{D}_{\text{focused}}$\;
+	\Return $\mathcal{D}_{\text{focused}}$\;
+\end{algorithm}
+
+This mathematically constrained algorithm drastically reduces the corpus volume from $21.8 \times 10^6$ characters down to a highly dense $3.46 \times 10^6$ characters, effectively filtering out non-radiotherapy noise while preserving localized bidirectional context.
+
+\subsection{Domain-Anchored Continued Pretraining}
+With the distilled corpus $\mathcal{D}_{\text{focused}}$, we initialize the network using the PubMedBERT architecture. To align the latent semantic space with our hyper-specialized vocabulary without inducing catastrophic forgetting of general biomedical knowledge, we employ a highly constrained Masked Language Modeling (MLM) continuous pretraining phase.
+
+Given an input token sequence $\mathbf{x}$, we uniformly select a subset of indices $\mathcal{M}$ to be masked, utilizing a strict masking probability of $\rho = 0.15$. The optimization objective is to minimize the negative log-likelihood of the true tokens $x_i$ given the corrupted context $\mathbf{x}_{\backslash \mathcal{M}}$:
+
+$$\mathcal{L}_{\text{MLM}} = - \sum_{i \in \mathcal{M}} \log P(x_i | \mathbf{x}_{\backslash \mathcal{M}}; \theta)$$
+
+To ensure reproducibility, pretraining is executed for exactly $1$ epoch with a random seed of $42$. We enforce a maximum sequence length of $256$ tokens and a batch size of $8$. The network parameters $\theta$ are updated using a learning rate of $5 \times 10^{-5}$, with checkpointing logged every $50$ steps and serialized every $500$ steps.
+
+\subsection{Cost-Sensitive Downstream Optimization}
+The fundamental characteristic of clinical NLP datasets, including the ROND benchmark, is severe class imbalance. Standard fine-tuning often converges to suboptimal local minima dominated by the majority class. To counteract this, we formulate a cost-sensitive supervised objective.
+
+For a downstream classification task with $C$ classes and a mini-batch of size $B$, we compute the inverse class frequencies from the training split to derive a weight vector $\omega \in \mathbb{R}^C$. The loss function is modified into a weighted cross-entropy formulation:
+
+$$\mathcal{L}_{\text{task}} = - \frac{1}{B} \sum_{i=1}^{B} \sum_{j=1}^{C} \omega_j y_{i,j} \log(\hat{y}_{i,j})$$
+
+where $y_{i,j}$ and $\hat{y}_{i,j}$ denote the one-hot target and the softmax probability output, respectively. The adapted encoder is fine-tuned for $5$ epochs. We strictly adhere to a learning rate of $2 \times 10^{-5}$, maintaining a batch size of $8$ for both training and evaluation, and a maximum length of $256$. The process utilizes the default Hugging Face Trainer AdamW optimizer without injecting manual warm-up heuristics, isolating the performance gains strictly to our semantic windowing strategy.
+
+\section{Experimental Setup} \label{exp_setup}
+To rigorously evaluate the efficacy and operational boundaries of our high-SNR adaptation strategy, we construct a comprehensive empirical testbed utilizing the Radiation Oncology NLP Database (ROND)~\cite{liu2024radiation}.
+
+\subsection{Evaluation Tasks and Structural Boundaries}
+To prevent the common pitfall of overclaiming algorithmic universality, we explicitly select three downstream tasks characterized by distinct structural properties and severe data scarcity. Due to the prohibitive cost of domain-expert annotation, these datasets represent realistic, extreme low-resource clinical scenarios:
+
+\begin{itemize}
+	\item \textbf{Anchor Task (Short-Text Therapy Classification)}: A highly domain-specific, label-implicit task requiring the model to distinguish between proton and photon therapy narratives. The dataset is strictly constrained to a minimal split of 70 training, 10 validation, and 20 testing instances.
+	\item \textbf{Support Task (Clinical Logic Reasoning)}: A binary (yes/no) reasoning task designed to verify semantic transferability beyond simple classification. It comprises 100 instances with a highly skewed label distribution (64 negative / 36 positive).
+	\item \textbf{Boundary-Condition Task (Medical-Physics QA Answer Selection)}: A structurally complex task evaluating long-range syntactic dependencies and logical deduction. We reformulate standard medical-physics multiple-choice questions into binary answer-selection pairs, totaling 402 pairs with a split of 282/40/80 (train/val/test).
+\end{itemize}
+
+\subsection{Baselines and LLM Comparators}
+To isolate the performance delta attributable to our keyword-focused semantic windowing, we establish two strict encoder baselines: the foundational class-weighted PubMedBERT~\cite{gu2021domain} and the Full Public Adaptation baseline. Both utilize identical cost-sensitive fine-tuning objectives.
+
+Furthermore, to provide an actionable cost-benefit analysis for hospital IT infrastructure, we contextualize our customized encoder against state-of-the-art generative Large Language Models (LLMs). To ensure a rigorously equitable comparison, we do not evaluate LLMs in a naive zero-shot vacuum. Instead, we employ advanced prompt engineering to elicit their maximum potential. We evaluate the latest DeepSeek-V3\cite{liu2024deepseek} and Qwen-Max/Plus\cite{bai2023qwen} architectures via their respective APIs. For text classification, we implement an optimized few-shot learning paradigm (one exemplar per class, initialized with a fixed seed). For the complex QA task, we utilize a specialist-brief prompt structure, which acts as a domain-specific Chain-of-Thought (CoT) guide, instructing the model to adopt the persona of a board-certified radiation oncologist before reasoning. All decoding temperatures are strictly set to 0.0 to guarantee deterministic outputs, utilizing API versions available in March 2026.
+
+\subsection{Evaluation Metrics}
+Given the extreme class imbalance intrinsic to the ROND benchmark (e.g., the 64/36 skew in logic reasoning), relying on overall accuracy is statistically misleading. Consequently, we designate Macro-F1 as the primary evaluation metric, as it computes the unweighted mean of the F1-scores for each class, thereby treating minority and majority classes equally. Accuracy is reported strictly as a secondary observation. To ensure statistical robustness against both initialization variance and the high sensitivity of the severely constrained test sets, all main encoder results are averaged across five distinct random seeds.
+
+\subsection{Implementation and Hardware Reproducibility}
+All computational experiments were executed on a dedicated single-node Linux environment. The hardware configuration comprises a single NVIDIA RTX-4090 GPU (24GB VRAM) and an AMD EPYC 7542 CPU with 16 allocated cores and 127 GB of system RAM. The software stack was built upon CUDA 12.1.0 and Python 3.10. Neural network architectures and optimization routines were implemented utilizing PyTorch and the Hugging Face Transformers library.
+
+\section{Experimental Results Analysis} \label{Experimental Results Analysis}
+This section presents the objective performance metrics of our proposed keyword-focused domain adaptation strategy compared against established baselines and generative LLMs.
+
+\subsection{Main Results on Clinical NLP Tasks}
+ Table II summarizes the aligned ROND comparison across the three structural task regimes. On the anchor task (Short-Text Therapy Classification), focused adaptation remained beneficial on the original public split, improving macro-F1 from 0.6360 to 0.6600. However, the multi-task pattern was not uniformly favorable. On the support task (Clinical Logic Reasoning), the weighted PubMedBERT baseline was strongest after the aligned rerun, with full adaptation second and focused adaptation third. On the boundary-condition task (Medical-Physics QA Answer Selection), full adaptation was marginally best, while focused adaptation and the baseline were close.
+ 
+ Taken together, the updated ROND comparison indicates that focused public adaptation is competitive but task-dependent. It improves the dense short-text anchor setting, but it does not provide a uniformly dominant advantage across reasoning-heavy or longer-context task variants.
+ 
+ \begin{table}[htbp]
+ 	\centering
+ 	\caption{Aligned Main Results Across Structural Boundaries on the ROND Benchmark}
+ 	\label{tab:main_results}
+ 	\resizebox{0.48\textwidth}{!}{
+ 	\begin{tabular}{@{}lcccc@{}}
+ 		\toprule
+ 		\textbf{Task (Structural Property)} & \textbf{Baseline\textsuperscript{a}} & \textbf{Full Adapt.} & \textbf{Focused} & \textbf{Best System} \\ \midrule
+ 		Text Classification (Anchor)  & 0.6360 & 0.6180 & \textbf{0.6600} & Focused \\
+ 		Logic Reasoning (Support)     & \textbf{0.4568} & 0.4432 & 0.4100 & Baseline \\
+ 		QA Answer Selection (Boundary)& 0.4883 & \textbf{0.5033} & 0.4936 & Full Adapt. \\ \bottomrule
+ 		\multicolumn{5}{l}{\footnotesize \textsuperscript{a} Weighted PubMedBERT without continued pretraining.} \\
+ 		\multicolumn{5}{l}{\footnotesize Note: Metrics represent Macro-F1 scores averaged across 5 random seeds.} \\
+ 	\end{tabular}}
+ \end{table}
+
+\subsection{Ablation Studies}
+To isolate the factors contributing to the performance variations, we conducted ablation studies on the anchor task, as summarized in Table III. Modifying the optimization hyperparameters by lowering the learning rate to $1 \times 10^{-5}$ resulted in a severe performance drop (Macro-F1: 0.5259). Replacing the class-weighted fine-tuning objective with standard data oversampling also yielded suboptimal results (Macro-F1: 0.5653).
+
+Regarding the pretraining configuration, extending the adaptation phase to two epochs (Seed 42) produced a macro-F1 of 0.6571, indicating marginal returns beyond a single epoch. Restricting the public corpus source exclusively to the NCI PDQ database (excluding the PMC supplement) reduced the macro-F1 to 0.6276.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Ablation Studies on the Anchor Task (Text Classification)}
+	\label{tab:ablation}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{Configuration / Strategy} & \textbf{Val F1} & \textbf{Test F1} & \textbf{Test Acc.} \\ \midrule
+		\textbf{Proposed: Focused Adaptation} & \textbf{0.7806} & \textbf{0.6600} & 0.8200 \\ \midrule
+		\textit{Optimization Ablations:} & & & \\
+		Lower Learning Rate ($1\times10^{-5}$) & 0.5556 & 0.5259 & 0.7700 \\
+		Standard Oversampling (No Weighting)   & 0.8039 & 0.5653 & 0.7700 \\ \midrule
+		\textit{Pretraining Ablations:} & & & \\
+		PDQ-only Corpus (No PMC)               & 0.6614 & 0.6276 & 0.7700 \\
+		Extended Pretraining (2 Epochs)\textsuperscript{a} & --     & 0.6571 & \textbf{0.8500} \\ \bottomrule
+		\multicolumn{4}{l}{\footnotesize \textsuperscript{a} Evaluated using a single seed (42) to assess over-fitting trajectory.} \\
+		\multicolumn{4}{l}{\footnotesize F1 denotes Macro-F1. Proposed configuration uses LR $2\times10^{-5}$ and 1 Epoch.} \\
+	\end{tabular}}
+\end{table}
+
+
+\subsection{Computational Cost and LLM Benchmarks}
+Table IV presents the performance and inference latency proxy for our customized encoder versus generative LLMs. On the anchor task, deepseek-chat (few-shot, seed 7) achieved the highest overall macro-F1 (0.8119), whereas qwen-plus under the identical prompt configuration yielded 0.6267. On the QA task, deepseek-chat utilizing a specialist-brief prompt reached a macro-F1 of 0.7359.
+
+However, the computational overhead varied drastically. For text classification, our adapted encoder executed batches in approximately 0.048 seconds with zero parsing failures. In contrast, the API-based inference required approximately 28 seconds for deepseek-chat and 14 seconds for qwen-plus. On the complex QA task, deepseek-chat required 206 seconds and recorded one parsing failure, while the encoder required only 0.175 seconds.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.98\linewidth]{tradeoff_scatter}
+	\caption{Deployment Benchmark}
+	\label{fig:Deployment Benchmark}
+\end{figure}
+
+
+\subsection{Window-Size Ablation}
+Because keyword-focused corpus extraction is a central component of the proposed method, we further evaluated the effect of sentence-window size on both corpus scale and downstream anchor-task performance. Specifically, we varied the bidirectional context window from $w=0$ to $w=\pm4$, where $w=0$ retains only the matched sentence and $w=\pm k$ retains the matched sentence together with the preceding and following $k$ sentences. For each setting, we rebuilt the focused corpus, measured its scale, and ran 5-seed downstream evaluation on the ROND text-classification anchor task using the same focused-adaptation pipeline.
+
+Table~\ref{tab:window_size_ablation} shows that the relationship between context size and downstream performance is non-monotonic. Larger windows substantially increase corpus size, but do not consistently improve macro-F1. In our experiments, $w=0$ and $w=\pm2$ yielded the strongest mean macro-F1 values, whereas larger windows increased variance without improving aggregate performance. These results suggest that context preservation and noise control must be balanced carefully, and that the previously used $w=\pm2$ setting is competitive but should not be interpreted as the unique optimum.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Effect of Sentence-Window Size on Focused Corpus Scale and Anchor-Task Performance}
+	\label{tab:window_size_ablation}
+	\resizebox{0.48\textwidth}{!}{
+		\begin{tabular}{@{}cccccc@{}}
+			\toprule
+			\textbf{Window $w$} & \textbf{Docs} & \textbf{Tokens} & \textbf{Avg. Tokens/Doc} & \textbf{Macro-F1} & \textbf{Accuracy} \\ \midrule
+			$0$   & 173 & 332,879 & 1,924.2 & $0.6153 \pm 0.0590$ & $0.7700 \pm 0.0245$ \\
+			$\pm1$ & 191 & 541,553 & 2,835.4 & $0.5576 \pm 0.1144$ & $0.7900 \pm 0.0374$ \\
+			$\pm2$ & 192 & 730,897 & 3,806.8 & $0.6148 \pm 0.0971$ & $0.7900 \pm 0.0200$ \\
+			$\pm3$ & 192 & 843,673 & 4,394.1 & $0.6108 \pm 0.1674$ & $0.7900 \pm 0.0860$ \\
+			$\pm4$ & 192 & 965,212 & 5,027.1 & $0.5584 \pm 0.0773$ & $0.7700 \pm 0.0510$ \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+
+\subsection{Additional Biomedical and Clinical Encoder Baselines}
+To strengthen the baseline family beyond a single PubMedBERT reference, we added one biomedical encoder baseline and one clinical encoder baseline to the anchor-task comparison. Specifically, we evaluated BioLinkBERT and Bio\_ClinicalBERT under the same class-weighted fine-tuning setup and 5-seed protocol used for the PubMedBERT-based systems. This comparison allows us to test whether the observed gains from focused public adaptation remain competitive when compared against stronger domain-relevant pretrained encoders rather than only a single biomedical starting point.
+
+As shown in Table~\ref{tab:encoder_family_comparison}, the proposed focused-adaptation variant remains the strongest mean-performing encoder in this family-level comparison. PubMedBERT with focused adaptation achieved the highest mean macro-F1 ($0.6600$), exceeding the weighted PubMedBERT baseline ($0.6360$), BioLinkBERT ($0.6070$), and Bio\_ClinicalBERT ($0.5509$). This result strengthens the claim that the proposed adaptation strategy is competitive within a realistic biomedical/clinical encoder family, although the variance remains non-trivial under low-resource evaluation.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Encoder Family Comparison on the Anchor Task (5 Seeds)}
+	\label{tab:encoder_family_comparison}
+	\resizebox{0.48\textwidth}{!}{
+		\begin{tabular}{@{}lcc@{}}
+			\toprule
+			\textbf{System} & \textbf{Macro-F1} & \textbf{Accuracy} \\ \midrule
+			PubMedBERT (weighted) & $0.6360 \pm 0.0586$ & $0.8100$ \\
+			PubMedBERT + Full Public Adaptation (weighted) & $0.6180 \pm 0.0641$ & $0.7900$ \\
+			PubMedBERT + Focused Adaptation (weighted) & $\mathbf{0.6600 \pm 0.1183}$ & $\mathbf{0.8200}$ \\
+			BioLinkBERT (weighted) & $0.6070 \pm 0.0888$ & $0.8000$ \\
+			Bio\_ClinicalBERT (weighted) & $0.5509 \pm 0.0921$ & $0.7900$ \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+
+\subsection{Small-Sample Robustness on the Original Public Split}
+Because the original public anchor-task test split contains only 20 examples, we performed an additional small-sample robustness analysis on representative seed-42 systems. We exported instance-level predictions and then computed bootstrap confidence intervals, paired sample-level comparisons, and class-wise metrics. This analysis was designed to quantify uncertainty more explicitly and to determine whether the fixed-split gains should be interpreted as strong or only directional evidence.
+
+The results are summarized in Table~\ref{tab:small_sample_bootstrap}. The focused-adaptation model improved over the weighted PubMedBERT baseline on the fixed split ($0.6078$ vs. $0.5671$ macro-F1), but the bootstrap confidence intervals remained wide and strongly overlapping across systems. Fold-matched paired comparison further showed only 2 wins versus 1 loss relative to the weighted PubMedBERT baseline, with 17 ties and an exact sign-test $p$-value of 1.0. Therefore, these fixed-split gains should be interpreted as directionally favorable rather than statistically decisive.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Bootstrap-Based Small-Sample Robustness on the Original Anchor-Test Split (Seed 42)}
+	\label{tab:small_sample_bootstrap}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{System} & \textbf{Accuracy} & \textbf{Macro-F1} & \textbf{Macro-F1 95\% CI} \\ \midrule
+		PubMedBERT (weighted) & 0.75 & 0.5671 & [0.3750, 0.8119] \\
+		PubMedBERT + Focused Adaptation (weighted) & 0.80 & 0.6078 & [0.3939, 0.8857] \\
+		BioLinkBERT (weighted) & 0.80 & 0.6875 & [0.4118, 0.9134] \\
+		Bio\_ClinicalBERT (weighted) & 0.80 & 0.4444 & [0.3750, 0.4872] \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Paired Sample-Level Comparison Using the Focused-Adaptation System as Reference}
+	\label{tab:small_sample_pairwise}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lcccc@{}}
+		\toprule
+		\textbf{Comparison System} & \textbf{Reference Wins} & \textbf{Comparison Wins} & \textbf{Ties} & \textbf{$p$-value} \\ \midrule
+		PubMedBERT (weighted) & 2 & 1 & 17 & 1.0 \\
+		BioLinkBERT (weighted) & 2 & 2 & 16 & 1.0 \\
+		Bio\_ClinicalBERT (weighted) & 1 & 1 & 18 & 1.0 \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+Class-wise inspection showed that the focused-adaptation model did not improve minority-class recall over the PubMedBERT baseline on this split (both obtained Photon therapy recall of 0.25), but it increased minority-class precision from 0.3333 to 0.5 and improved Proton therapy recall from 0.875 to 0.9375. In contrast, BioLinkBERT produced the strongest minority-class recall on this single split, whereas Bio\_ClinicalBERT collapsed on the minority class entirely. Taken together, the small-sample analysis supports a cautious interpretation: the focused-adaptation strategy can yield favorable fixed-split outcomes, but the tiny public test set does not support strong claims of statistical superiority.
+
+\subsection{Repeated Stratified Cross-Validation}
+To provide a stronger robustness check beyond the original benchmark partition, we merged the original training, validation, and test examples into a 100-example anchor-task pool and performed repeated 5-fold stratified cross-validation with 3 repeats, yielding 15 matched evaluation splits per system. Within each outer training fold, we further reserved a stratified validation subset using a validation fraction of 0.125 so that model selection remained consistent with the original train/validation/test training logic. We compared the class-weighted PubMedBERT baseline against the class-weighted focused-adaptation PubMedBERT model under the same optimization setup. For this cross-validation-only analysis, checkpoint saving and final model serialization were disabled to avoid storage blow-up across folds; all training and evaluation logic was otherwise unchanged.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Repeated Stratified Cross-Validation on the Full Anchor-Task Pool (15 Matched Splits)}
+	\label{tab:repeated_cv_results}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{System} & \textbf{Accuracy} & \textbf{Macro-F1} & \textbf{Weighted-F1} \\ \midrule
+		PubMedBERT (weighted) & $0.8533 \pm 0.0386$ & $\mathbf{0.7196 \pm 0.0832}$ & $\mathbf{0.8387 \pm 0.0462}$ \\
+		PubMedBERT + Focused Adaptation (weighted) & $0.8467 \pm 0.0427$ & $0.7072 \pm 0.1041$ & $0.8312 \pm 0.0540$ \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Fold-Matched Pairwise Comparison in Repeated Cross-Validation}
+	\label{tab:repeated_cv_pairwise}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lcccc@{}}
+		\toprule
+		\textbf{Reference System} & \textbf{Comparison System} & \textbf{Reference Wins} & \textbf{Comparison Wins} & \textbf{Ties} \\ \midrule
+		Focused Adaptation + PubMedBERT & PubMedBERT (weighted) & 5 & 5 & 5 \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+Repeated stratified cross-validation did not confirm a consistent aggregate advantage for focused public adaptation on the anchor task. Although the focused model remained competitive, the weighted PubMedBERT baseline achieved a slightly higher mean macro-F1 (0.7196 vs. 0.7072) and lower variance across repeated splits. The paired split-wise comparison was evenly balanced (5 wins, 5 losses, and 5 ties), with a mean macro-F1 delta of $-0.0124$ for the focused-adaptation system relative to the weighted PubMedBERT baseline. This result suggests that focused adaptation should be interpreted as a competitive, context-dependent strategy rather than as a uniformly superior replacement for generic biomedical encoder fine-tuning.
+
+\subsection{Leakage-Controlled External Validation on PubMedQA}
+To test whether the adaptation strategies generalized beyond the ROND benchmark, we constructed a leakage-controlled external validation protocol on PubMedQA. We created a stratified train/validation/test split containing 700/150/150 examples, and we constrained replay regularization to the PubMedQA training split only. This design prevented the replay corpus from seeing the held-out validation or test questions while still allowing us to examine whether a small amount of reasoning-oriented replay could improve external transfer.
+
+Table~\ref{tab:pubmedqa_external_validation} shows that pure focused adaptation did not transfer well to the external task, but a light replay-regularized focused model (\textit{replay10}) achieved the best mean test macro-F1. Specifically, replay10 improved over the weighted PubMedBERT baseline (0.4558 vs. 0.4456 macro-F1) and outperformed both the matched full-adaptation and matched pure-focused variants. Increasing the replay proportion to 20\% did not provide further benefit, indicating that mild replay regularization is more effective than heavier mixing in this setup.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Leakage-Controlled External Validation on PubMedQA (5 Seeds)}
+	\label{tab:pubmedqa_external_validation}
+	\resizebox{0.48\textwidth}{!}{
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{System} & \textbf{Val Macro-F1} & \textbf{Test Macro-F1} & \textbf{Test Acc.} \\ \midrule
+		PubMedBERT (weighted) & 0.4411 & 0.4456 $\pm$ 0.0317 & 0.5560 \\
+		Full Adapt. (matched) & 0.4334 & 0.4199 $\pm$ 0.0292 & 0.5373 \\
+		Focused Adapt. (matched) & 0.4353 & 0.4165 $\pm$ 0.0248 & 0.5360 \\
+		Focused + Replay20 (train-only) & 0.4394 & 0.4292 $\pm$ 0.0389 & 0.5493 \\
+		Focused + Replay10 (train-only) & \textbf{0.4476} & \textbf{0.4558 $\pm$ 0.0433} & \textbf{0.5693} \\ \bottomrule
+	\end{tabular}}
+\end{table}
+
+We further quantified the external-validation robustness on the representative seed-42 split. The replay10 model achieved an accuracy of 0.5933 and a macro-F1 of 0.4831, with a bootstrap macro-F1 interval of [0.3942, 0.5733]. Pairwise sample-level comparison showed that replay10 significantly outperformed the weighted PubMedBERT baseline (27 wins vs. 11 losses, $p=0.0139$) and the matched pure-focused model (23 wins vs. 8 losses, $p=0.0107$), while remaining statistically indistinguishable from the matched full-adaptation and replay20 variants. Class-wise analysis indicated that the main external gains came from the majority labels: compared with the baseline, replay10 increased the F1 score for \textit{yes} from 0.5676 to 0.6826 and for \textit{no} from 0.4912 to 0.5524, whereas the \textit{maybe} class remained challenging for all systems.
+
+
+
+
+
+
+\section{Discussion} \label{Discussion}
+
+\iffalse
+\subsection{The Mechanism of Focused Adaptation: Purity Over Volume}
+The empirical results strictly validate our core hypothesis: in hyper-specialized clinical sub-domains, data purity supersedes data volume. The failure of the Full Public Adaptation baseline (Macro-F1 dropping to 0.6180) demonstrates that injecting broad, unfiltered oncology text acts as semantic noise. By employing localized semantic windowing ($w=2$), we successfully condensed the corpus while preserving the bidirectional context around domain-specific triggers (e.g., proton, photon), thereby enabling the encoder to construct higher-density latent representations for short-text clinical narratives.
+
+A critical contribution of this study is the explicit documentation of our method's operational boundaries. The substantial negative transfer observed in the Boundary-Condition Task (Medical-Physics QA Answer Selection), where macro-F1 degraded by -0.0766, necessitates a rigorous error analysis. We attribute this degradation to two interacting mechanisms induced by our localized semantic windowing: Contextual Myopia and Syntactic Forgetting.
+
+By restricting the pretraining context to a narrow window ($w=2$), the focused corpus effectively isolated dense clinical entities (e.g., proton, dose, fractionation) but systematically truncated the multi-sentence logical chains naturally occurring in clinical literature. Consequently, the adapted encoder developed "contextual myopia"—a hyper-sensitivity to local collocations.
+
+A qualitative error analysis of the QA misclassifications reveals that the focused encoder disproportionately favored incorrect candidate answers that shared high lexical overlap with the question premise, ignoring logical negations or relational operators. For instance, in questions regarding depth-dose characteristics (e.g., comparing the Bragg peak of protons versus the exponential attenuation of photons after $d_{max}$), the focused model frequently selected distractors containing dense clusters of domain terms, bypassing the necessary comparative logic. It regressed from semantic reasoning to a shallow, bag-of-words lexical matching heuristic.
+
+\subsubsection{Syntactic Forgetting and the Loss of Mathematical/Physical Reasoning}
+Medical-physics QA intrinsically demands multi-step deductive reasoning and mathematical intuition. In questions evaluating physical relationships—such as the inverse-square law or dose-volume constraints (e.g., "If the distance from a point source is doubled, how does the dose rate change?")—the adapted encoder consistently failed to select the mathematically correct deduction ("Decreases by a factor of four"). By purposefully filtering out broad, generic oncology text to maximize signal purity, we inadvertently stripped away the complex syntactic structures (e.g., causal, conditional, and proportional clauses) that sustain general deductive reasoning. This indicates a form of catastrophic forgetting of generic syntactic logic during the domain-centric Masked Language Modeling phase. The model memorized the domain vocabulary but lost the architectural capacity to execute the multi-step reasoning required to parse complex QA pairs.
+
+\subsubsection{Balancing Strategies: The Role of Experience Replay}
+To mitigate this negative transfer in future clinical NLP pipelines, we propose the integration of an \textit{Experience Replay} mechanism during the continued pretraining phase. Rather than utilizing a 100\% pure focused corpus, future iterations should interleave a controlled ratio (e.g., 10-15\%) of general-domain biomedical reasoning data (such as PubMedQA or MedNLI subsets) alongside the high-SNR radiation oncology windows. This experience replay strategy would act as a structural regularizer—allowing the encoder to assimilate the hyper-specialized vocabulary without overwriting the foundational syntactic and logical pathways required for complex question answering.
+
+\fi
+
+\subsection{Task-Dependent Adaptation Rather Than Uniform Superiority}
+The strengthened experimental suite substantially refines the interpretation of our original hypothesis. Focused public adaptation remains useful, but the evidence does not support a universal ``purity over volume'' claim across all task types. On the original fixed split of the short-text anchor task, focused adaptation improved over the weighted PubMedBERT baseline. However, the aligned multi-task rerun showed that this benefit did not extend uniformly to logic reasoning or QA answer selection, and repeated stratified cross-validation did not confirm a stable aggregate advantage on the full anchor-task pool.
+
+The ablation studies show why a stronger claim would be inappropriate. First, corpus construction is a meaningful methodological choice rather than a cosmetic preprocessing detail: the sentence-window ablation was clearly non-monotonic, and larger contextual windows did not consistently improve performance. Second, family-level encoder comparison indicates that focused adaptation remains competitive within a realistic biomedical/clinical encoder family, but not dominant by a wide margin. Third, the token-budget matched comparisons show that corpus purity alone is insufficient to explain downstream behavior: under matched training budgets, the weighted baseline remained strongest on the anchor task, focused adaptation was best on the logic-reasoning task, and no single strategy dominated the QA task.
+
+\subsection{The Value of Controlled Replay for External Generalization}
+The most encouraging rescue signal emerged in the leakage-controlled external validation on PubMedQA. Pure focused adaptation did not generalize well to the external task, but a light replay-regularized focused model produced the strongest mean external macro-F1. In particular, replay10 outperformed the weighted PubMedBERT baseline in the 5-seed summary and showed statistically favorable sample-level pairwise behavior on the representative split. This finding suggests that the most promising adaptation principle is not extreme purity by itself, but a controlled mixture in which a radiation-oncology-focused corpus is regularized with a small amount of held-out-compatible biomedical reasoning text.
+
+This interpretation is also consistent with the class-wise external results. Replay10 improved the majority-label \textit{yes} and \textit{no} categories relative to the baseline, while preserving a nonzero \textit{maybe} signal and avoiding the pronounced degradation observed for the pure focused-matched variant. In other words, replay regularization appears to preserve some of the local lexical benefits of focused adaptation while reducing the degree of reasoning drift that harms transfer outside the source benchmark.
+
+\subsection{Clinical Deployment Viability and Cost-Benefit Analysis}
+As detailed in Table IV, the performance comparison between our adapted encoder and fully prompted LLMs (DeepSeek-V3 and Qwen) reveals a multi-dimensional cost-benefit trade-off critical for clinical IT deployment.
+
+\subsubsection{Hardware Accessibility and Inference Latency}
+The latency disparity (0.048s vs. up to 206s) is fundamentally tied to the hardware architecture. Our lightweight adapted encoder (approx. 110M parameters) was deployed locally on a single consumer-grade workstation equipped with one NVIDIA RTX-4090 GPU (24GB VRAM). At this scale, it processes high-volume classification batches natively with near-zero IT overhead. In contrast, deploying 100B+ parameter generative LLMs locally requires prohibitively expensive enterprise clusters (e.g., multiple NVIDIA A100 or H100 80GB nodes), which is financially and technically infeasible for standard hospital infrastructures. Consequently, deploying LLMs typically relies on external commercial API routing. This not only introduces severe network latency but also raises fundamental patient data governance and HIPAA compliance concerns when handling sensitive radiation oncology narratives.
+
+\subsubsection{Parsing Instability in Automated Workflows}
+While LLMs exhibit high reasoning accuracy, they suffer from occasional parsing instability—a critical point of failure in fully automated clinical pipelines. In our evaluation, we utilized strict system prompts demanding a deterministic JSON output. However, the generative LLMs occasionally ignored these structural constraints, defaulting to verbose conversational wrappers or appending markdown artifacts.
+
+\iffalse
+\subsection{The Scope and Limits of Focused Encoder Adaptation}
+By contrasting the performance trajectory across our diverse evaluation set, we can establish a theoretical framework that explicitly defines the operational boundaries of focused domain adaptation. This framework is governed by two interacting axes: Semantic Density and Logical Complexity.
+
+Our methodology exhibited a distinct positive transfer on the anchor text classification task (+0.0240 macro-F1) and the logic reasoning support task. These tasks are characterized by high semantic density; the ground truth is often implicitly encoded within local collocations of highly specialized terms (e.g., distinguishing proton versus photon therapy based on adjacent dosimetric vocabulary). For such tasks, the localized semantic windowing strategy is highly optimal. By physically filtering out broader oncology noise, the adaptation corpus forces the encoder to exclusively model the distributional semantics of the radiation oncology lexicon. Consequently, lightweight encoders become highly robust, computationally efficient pattern matchers for high-volume, entity-centric clinical routing.
+
+Conversely, the pronounced negative transfer observed in the complex medical-physics QA task (-0.0766 macro-F1) delineates the strict upper limit of this adaptation paradigm. Medical-physics QA requires multi-step deductive reasoning, physical intuition, and compositional logic (e.g., comparing sequential dosimetric effects). Our error analysis reveals that aggressive semantic distillation inherently truncates the long-range syntactic structures—the generic "connective tissue" of language such as causal and conditional clauses—necessary to sustain this reasoning.
+
+When a clinical NLP task crosses the threshold from localized semantic matching into structural logical deduction, lightweight encoder adaptation fails. The model regresses to a shallow lexical-matching heuristic, often selecting incorrect answers merely because they contain a high density of in-domain keywords. Therefore, we establish a definitive clinical IT guideline: for tasks dominated by high logical complexity and long-context comprehension, the architectural boundary of small encoders is breached. In these specific regimes, transitioning to generative LLMs (which retain extensive parametric world knowledge and uncorrupted reasoning circuits) is not just an alternative, but an architectural necessity, despite the associated deployment latency.
+
+
+\subsection{Limitations and Future Work}
+We acknowledge certain methodological limitations. Our current semantic windowing relies on regular expression boundaries and fixed sentence counts ($w=2$). Future research will explore dynamically sizing these windows utilizing dependency parsing trees to better preserve syntactic integrity without introducing noise. Additionally, expanding the evaluation to other micro-domains (e.g., pediatric cardiology) will further validate the generalizability of this public-data adaptation protocol.
+
+The additional robustness experiments refine the interpretation of our main method. Window-size ablation shows that corpus construction is a meaningful design choice rather than a cosmetic preprocessing detail, and that larger contextual windows do not monotonically improve downstream performance. Family-level encoder comparison confirms that the proposed focused-adaptation variant remains competitive against both biomedical and clinical pretrained encoders. At the same time, the small-sample and repeated-cross-validation analyses indicate that the observed anchor-task gains are not strong enough to justify a broad superiority claim. We therefore view focused public adaptation as a targeted and practically motivated strategy with conditional benefits, especially in fixed-split low-resource evaluations, rather than as a uniformly dominant method.
+
+
+
+\section{Conclusion} \label{conclusion and future work}
+In this study, we addressed the critical bottlenecks of extreme data scarcity and micro-domain shift in radiation oncology NLP by proposing a reproducible, privacy-preserving domain adaptation paradigm. By strictly constraining our pretraining sources to public literature and employing a keyword-centric semantic windowing strategy, we engineered a high-SNR micro-corpus that formally operationalizes the principle of data purity over naive volumetric scaling. Our empirical evaluation on the ROND benchmark demonstrates that localized semantic adaptation effectively enhances encoder representations for dense, domain-specific clinical narratives, yielding consistent performance gains in short-text therapy classification and clinical logic reasoning. Crucially, by documenting the negative transfer observed in complex medical-physics QA, we explicitly defined the structural boundaries of this methodology: while localized windowing excels at capturing dense entity embeddings, it is structurally incompatible with tasks requiring long-range syntactic and multi-step deductive reasoning. Furthermore, our comprehensive deployment benchmark against generative LLMs (e.g., DeepSeek, Qwen) establishes a pragmatic quality-versus-cost frontier for clinical IT infrastructure. While LLMs remain indispensable for low-volume, structurally complex zero-shot reasoning, our customized, lightweight encoder provides a computationally optimal solution for high-frequency clinical classifications, executing with zero parsing instability and a fraction of the latency. Ultimately, this work provides a robust, data-centric blueprint for low-resource medical NLP, proving that clinical AI deployment should be governed not by universal model scale, but by rigorous data purity and specific task structures.
+\fi
+
+\subsection{The Scope and Limits of Focused Encoder Adaptation}
+By contrasting the performance trajectory across the fixed-split benchmark, the aligned reruns, the matched-budget experiments, and the leakage-controlled external validation, we can define the scope of public radiation-oncology adaptation more precisely. The method is most plausible when a task benefits from localized domain terminology but does not require extensive long-range reasoning. Dense short clinical narratives and certain support-style reasoning tasks can benefit from carefully focused adaptation. However, those benefits are conditional, and they depend strongly on how the adaptation corpus is constructed and regularized.
+
+The combined evidence also suggests that there is no single best adaptation regime for all task structures. Pure focused adaptation can be competitive on dense micro-domain tasks, but it is brittle under some robustness checks. Full adaptation preserves broader coverage but can dilute the relevant signal. Light replay-regularized focused adaptation offers a more balanced compromise, especially when the target objective includes external transfer rather than only in-benchmark optimization. This conditional picture is less rhetorically simple than a broad superiority claim, but it is more useful for real deployment decisions.
+
+\subsection{Limitations and Future Work}
+We acknowledge several limitations. First, the core public radiation-oncology benchmark remains small, especially for the anchor-task test split, so even repeated-seed and bootstrap analyses cannot fully substitute for broader benchmark diversity. Second, our focused corpus construction is still lexicon-driven and sentence-window-based, which makes it interpretable and reproducible but also somewhat heuristic. Third, the external validation currently relies on a single leakage-controlled PubMedQA task; broader public external validation would make the generalization claim stronger. Finally, while replay regularization improved external transfer in our experiments, we only explored two replay ratios and one replay source.
+
+These limitations motivate the next stage of this research line. Future work should study lexicon controls more systematically, evaluate additional external biomedical reasoning tasks under leakage-controlled protocols, and explore adaptive corpus-construction strategies that better preserve useful structure without reintroducing excessive background noise. We therefore view focused public adaptation not as a universally dominant recipe, but as a promising component within a broader, better-regularized low-resource adaptation toolkit.
+
+\section{Conclusion} \label{conclusion and future work}
+In this study, we investigated how public-data-only domain adaptation behaves in a highly specialized radiation oncology NLP setting. The strengthened evidence shows that keyword-focused adaptation is useful but conditional: it can improve dense micro-domain classification on the original benchmark split, yet its gains are not uniformly preserved across aligned reruns, repeated cross-validation, or all downstream task structures. We also showed that corpus construction is a real methodological lever rather than a preprocessing detail, and that the trade-off between focus and coverage is non-monotonic.
+
+The most encouraging finding is that a leakage-controlled, train-only replay-regularized focused model achieved the strongest external validation performance on PubMedQA. This result suggests that the most promising path forward is not pure semantic filtering alone, but small, carefully controlled replay regularization layered on top of a focused radiation-oncology adaptation corpus. Together with the deployment comparison against generative LLMs, our results support a pragmatic conclusion: low-resource clinical NLP systems should be designed around task structure, corpus purity, and generalization constraints rather than around a single universal adaptation recipe. We hope this work provides a reproducible foundation for future public-data medical NLP studies that must operate under strict privacy and data-access constraints.
+
+% Uncomment and use as the case may be
+%\begin{theorem} 
+%\end{theorem}
+
+% Uncomment and use as the case may be
+%\begin{lemma} 
+%\end{lemma}
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+
+% To print the credit authorship contribution details
+\printcredits
+
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Data availability}
+All code and data have been publicly released at https://
+github.com/Hero-Legend/MVCL-NER.
+
+
+
+%\section*{Acknowledgment}
+%This work is supported by Science Research Project of Hebei Education Department under Grant No.QN2025011 and QN2025333, Doctoral Research Start-up Fund Program of The National Police University for Criminal Justice Under Grant No.BSQDW202150 and BSQDW202151, The Social Science Foundation of Baoding Under Grant No.2025098, National Nature Science Foundation of China under Grant No. 62171043, 62202061 and 62362057. Haixiang Yang is the corresponding author of this paper.%
+
+
+%% Loading bibliography style file
+%\bibliographystyle{model1-num-names}
+%\bibliographystyle{cas-model2-names}
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

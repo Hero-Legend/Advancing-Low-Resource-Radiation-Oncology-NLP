@@ -1,0 +1,32 @@
+[
+  {
+    "name": "pubmedbert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/PubMedBert",
+    "use_class_weights": true,
+    "extra_args": ["--disable-checkpointing", "--skip-final-save"]
+  },
+  {
+    "name": "pubmedbert_full_matched_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_full_matched_steps",
+    "use_class_weights": true,
+    "extra_args": ["--disable-checkpointing", "--skip-final-save"]
+  },
+  {
+    "name": "pubmedbert_focused_matched_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_focused_matched_steps",
+    "use_class_weights": true,
+    "extra_args": ["--disable-checkpointing", "--skip-final-save"]
+  },
+  {
+    "name": "pubmedbert_focused_replay10_trainonly_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_focused_replay10_trainonly_matched_steps",
+    "use_class_weights": true,
+    "extra_args": ["--disable-checkpointing", "--skip-final-save"]
+  },
+  {
+    "name": "pubmedbert_focused_replay20_trainonly_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_focused_replay20_trainonly_matched_steps",
+    "use_class_weights": true,
+    "extra_args": ["--disable-checkpointing", "--skip-final-save"]
+  }
+]

@@ -1,0 +1,70 @@
+{"id":40,"text":"Patients who cannot have reached their limit for traditional radiation.","label":"Proton therapy"}
+{"id":97,"text":"Lower vertebral bone marrow dose during chemoradiation therapy of esophageal cancer.","label":"Proton therapy"}
+{"id":36,"text":"Postmastectomy breast cancer patients using ultrahypofractionation.","label":"Proton therapy"}
+{"id":30,"text":"Magnetic field is used to direct the radiation.","label":"Proton therapy"}
+{"id":93,"text":"Reduced dysphagia for patients with tumor in the upper head and neck area.","label":"Proton therapy"}
+{"id":34,"text":"Left-sided breast cancer patients.","label":"Proton therapy"}
+{"id":37,"text":"Machines that produce and deliver the radiation beam are large, need dedicated space, and are very expensive.","label":"Proton therapy"}
+{"id":45,"text":"Esophageal and esophagogastric junction cancers.","label":"Proton therapy"}
+{"id":94,"text":"Pediatric orbital rhabdomyosarcoma.","label":"Proton therapy"}
+{"id":82,"text":"Radiosurgical treatment of liver metastases.","label":"Proton therapy"}
+{"id":33,"text":"Breast cancer patients that have heart very close to chest wall, and also close to the tumor.","label":"Proton therapy"}
+{"id":91,"text":"Reduced symptom burden within 3 months after treatment for oropharyngeal cancer patients.","label":"Proton therapy"}
+{"id":49,"text":"Improved survival and/or fewer side effects for hepatocellular carcinoma.","label":"Proton therapy"}
+{"id":87,"text":"Intracranial arteriovenous malformation.","label":"Proton therapy"}
+{"id":68,"text":"Adjuvant radiation therapy for early stage seminoma.","label":"Proton therapy"}
+{"id":6,"text":"Lower integral dose.","label":"Proton therapy"}
+{"id":81,"text":"High-dose pelvic node radiation therapy delivered for patients with pelvic node adenopathy.","label":"Proton therapy"}
+{"id":66,"text":"Decreased toxicity and reduced secondary cancer risk in stage IIA/B seminoma.","label":"Proton therapy"}
+{"id":39,"text":"Patients who need chemotherapy.","label":"Proton therapy"}
+{"id":32,"text":"Craniospinal irradiation in pediatric patients with medulloblastoma.","label":"Proton therapy"}
+{"id":67,"text":"Postmastectomy radiation with cardiopulmonary sparing.","label":"Proton therapy"}
+{"id":72,"text":"Early stage lung cancer patients with high risk of pulmonary toxicity when treating with SBRT.","label":"Proton therapy"}
+{"id":11,"text":"Reduced estimated secondary cancer risk in lower-grade gliomas.","label":"Proton therapy"}
+{"id":0,"text":"Head and neck cancers of tumors located at the base of the skull where nerves come out.","label":"Proton therapy"}
+{"id":88,"text":"Higher LET and RBE near the distal edges could lead to higher severe toxicities.","label":"Proton therapy"}
+{"id":26,"text":"High LET can hit outside the tumor and be harmful to critical organ.","label":"Proton therapy"}
+{"id":15,"text":"Tumor dose escalation.","label":"Proton therapy"}
+{"id":86,"text":"Localized unresectable hepatocellular carcinoma.","label":"Proton therapy"}
+{"id":57,"text":"The range of the radiation beam can be adjusted to match the extent of the tumor without exiting into normal tissues.","label":"Proton therapy"}
+{"id":24,"text":"Lower requirement for gastrostomy tube placement for stage T1-4N0-3 nasopharynx cancer.","label":"Proton therapy"}
+{"id":65,"text":"Adjuvant radiation therapy for patients with stage II thymic malignancies.","label":"Proton therapy"}
+{"id":54,"text":"Malignant lesions of paranasal sinus and other accessory sinuses.","label":"Proton therapy"}
+{"id":92,"text":"Lower doses to hippocampi and other brain structures for skull-base meningiomas.","label":"Proton therapy"}
+{"id":73,"text":"Pre-operative radiation for soft tissue sarcoma.","label":"Proton therapy"}
+{"id":31,"text":"Hypothetical retinoblastoma lesions in the nasal, central and temporal locations of the posterior retina.","label":"Proton therapy"}
+{"id":75,"text":"Improved overall survival for patients with gliomas.","label":"Proton therapy"}
+{"id":74,"text":"Locally advanced stage III esophageal squamous cell carcinoma.","label":"Proton therapy"}
+{"id":83,"text":"Reduced the acute gastrointestinal toxicities associated with irradiation when treating children with brain tumors using craniospinal irradiation.","label":"Proton therapy"}
+{"id":90,"text":"Reduced toxicities and hospitalization in the treatment of head and neck malignancies.","label":"Proton therapy"}
+{"id":76,"text":"Testicular seminoma.","label":"Proton therapy"}
+{"id":62,"text":"Younger breast cancer patients or breast cancer patients with increased coronary heart disease risk.","label":"Proton therapy"}
+{"id":51,"text":"Irregular shaped lesions near critical structures.","label":"Proton therapy"}
+{"id":56,"text":"Pituitary neoplasms.","label":"Proton therapy"}
+{"id":9,"text":"Cancer located in or around complicated anatomy.","label":"Proton therapy"}
+{"id":35,"text":"Recurrent breast cancer after traditional radiation.","label":"Proton therapy"}
+{"id":59,"text":"Extreme sensitivity to changes in the patient’s anatomy.","label":"Proton therapy"}
+{"id":8,"text":"Tumors in brain and spine.","label":"Proton therapy"}
+{"id":14,"text":"Pediatric and adolescent patients with craniopharyngioma.","label":"Proton therapy"}
+{"id":42,"text":"Maxillary sinus or paranasal/ethmoid sinus tumors.","label":"Proton therapy"}
+{"id":1,"text":"Lung cancers in the middle of chest or near the esophagus.","label":"Proton therapy"}
+{"id":25,"text":"Lower risk of acute grade 3 mucositis and acute grade 2 xerostomia for stage T3-4N0-2 nasopharyngeal carcinoma patients.","label":"Proton therapy"}
+{"id":47,"text":"Uveal melanoma (ocular tumor).","label":"Proton therapy"}
+{"id":23,"text":"Reduced total toxicity burden and postoperative complications scores for stage I-III esophageal cancer.","label":"Proton therapy"}
+{"id":69,"text":"Dome and central tumors larger than 3 cm in liver when using SBRT.","label":"Proton therapy"}
+{"id":77,"text":"Definitive chemoradiotherapy for esophageal cancer.","label":"Proton therapy"}
+{"id":19,"text":"Solid tumors with defined borders.","label":"Proton therapy"}
+{"id":85,"text":"Retroperitoneal sarcoma.","label":"Proton therapy"}
+{"id":20,"text":"More supported by insurance providers.","label":"Photon therapy"}
+{"id":61,"text":"Older men with prostate cancer.","label":"Photon therapy"}
+{"id":5,"text":"Less sensitive to motions.","label":"Photon therapy"}
+{"id":21,"text":"More cost-effective for cancer treatment.","label":"Photon therapy"}
+{"id":58,"text":"Much more accessible in the United States.","label":"Photon therapy"}
+{"id":4,"text":"Less sensitive to uncertainties.","label":"Photon therapy"}
+{"id":16,"text":"Treating cancers with MR image guidance.","label":"Photon therapy"}
+{"id":60,"text":"Breast cancer patients of various ages without cardiac risk factors.","label":"Photon therapy"}
+{"id":38,"text":"More robust to interplay effect.","label":"Photon therapy"}
+{"id":63,"text":"Lower skin toxicities for breast cancer.","label":"Photon therapy"}
+{"id":99,"text":"Vestibular schwannomas less than 3.0-4.0 cm in size.","label":"Photon therapy"}
+{"id":43,"text":"Any type of gynecologic cancers, i.e., cervical cancer, ovarian cancer, uterine neoplasms, or vulvar cancer.","label":"Photon therapy"}
+{"id":22,"text":"Early-stage lung cancer using SBRT.","label":"Photon therapy"}

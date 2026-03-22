@@ -1,0 +1,13 @@
+{
+  "train": "research_data/processed/rond/text_classification/train.jsonl",
+  "val": "research_data/processed/rond/text_classification/val.jsonl",
+  "test": "research_data/processed/rond/text_classification/test.jsonl",
+  "model_name": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+  "output_dir": "results/rond/text_classification/pubmedbert",
+  "max_length": 256,
+  "learning_rate": 2e-5,
+  "train_batch_size": 8,
+  "eval_batch_size": 8,
+  "epochs": 5,
+  "seed": 42
+}

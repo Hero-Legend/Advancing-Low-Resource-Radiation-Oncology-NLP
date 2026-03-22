@@ -1,0 +1,17 @@
+[
+  {
+    "name": "pubmedbert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/PubMedBert",
+    "use_class_weights": true
+  },
+  {
+    "name": "pubmedbert_full_adaptation_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_mlm_e1",
+    "use_class_weights": true
+  },
+  {
+    "name": "pubmedbert_focused_adaptation_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_focused_mlm_e1",
+    "use_class_weights": true
+  }
+]

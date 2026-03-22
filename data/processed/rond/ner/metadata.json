@@ -1,0 +1,22 @@
+{
+    "source_file":  "F:\\codex-workspace\\research_data\\Radiation-Oncology-NLP-Database\\3-Named Entity Recognition (NER)\\Use-this-Wenxiong-New Named Entity Recognition Examples.txt",
+    "num_records":  20,
+    "entity_labels":  [
+                          "B-ANATOMY",
+                          "B-DATE",
+                          "B-DISEASE",
+                          "B-NUMBER",
+                          "B-OUTCOME",
+                          "B-PERSON",
+                          "B-SYMPTOM",
+                          "B-TREATMENT",
+                          "I-ANATOMY",
+                          "I-DATE",
+                          "I-DISEASE",
+                          "I-NUMBER",
+                          "I-OUTCOME",
+                          "I-PERSON",
+                          "I-SYMPTOM",
+                          "I-TREATMENT"
+                      ]
+}

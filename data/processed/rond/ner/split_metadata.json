@@ -1,0 +1,7 @@
+{
+    "train_size":  14,
+    "val_size":  3,
+    "test_size":  3,
+    "source":  "ner_records.jsonl",
+    "note":  "Random split because the source examples do not provide an official split."
+}

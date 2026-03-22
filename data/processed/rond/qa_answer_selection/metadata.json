@@ -1,0 +1,24 @@
+{
+  "source_file": "/gz-fs/codex-workspace/research_data/raw_rond/qa/Medical-Physics-100questions-QA-format.csv",
+  "num_questions": 100,
+  "num_pair_examples": 402,
+  "question_split_sizes": {
+    "train": 70,
+    "val": 10,
+    "test": 20
+  },
+  "pair_split_sizes": {
+    "train": 282,
+    "val": 40,
+    "test": 80
+  },
+  "pair_label_counts": {
+    "correct": 100,
+    "incorrect": 302
+  },
+  "option_count_distribution": {
+    "4": 98,
+    "5": 2
+  },
+  "seed": 42
+}

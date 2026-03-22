@@ -1,0 +1,8 @@
+setting,val_macro_f1_mean,test_macro_f1_mean,test_accuracy_mean,test_weighted_f1_mean,role_in_paper
+PubMedBERT weighted baseline,0.7806,0.6360,0.8100,0.7868,"Primary baseline"
+Full public adaptation + weighted fine-tuning,0.7087,0.6180,0.7900,0.7717,"Ablation showing unfocused adaptation is weaker"
+Focused public adaptation + weighted fine-tuning,0.7806,0.6600,0.8200,0.7988,"Main proposed method"
+Focused adaptation + weighted fine-tuning + lower LR (1e-5),0.5556,0.5259,0.7700,,"Negative control for downstream LR"
+Focused adaptation + oversampling,0.8039,0.5653,0.7700,,"Negative control for imbalance handling"
+PDQ-only focused adaptation + weighted fine-tuning,0.6614,0.6276,0.7700,0.7642,"Corpus ablation showing the PMC supplement helps"
+Focused adaptation 2 epochs (seed 42),,0.6571,0.8500,0.8114,"Epoch ablation showing more adaptation is not automatically better"

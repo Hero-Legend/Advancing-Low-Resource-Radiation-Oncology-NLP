@@ -1,0 +1,4 @@
+task_name,pubmedbert_weighted_macro_f1,focused_adaptation_macro_f1,delta_macro_f1,focused_adaptation_status,notes
+ROND text classification,0.6360,0.6600,0.0240,positive,"Primary anchor task; focused adaptation gives the best encoder mean result"
+ROND logic reasoning,0.4148,0.4477,0.0329,positive,"Support task; transfer signal exists but absolute performance remains modest"
+ROND QA answer selection,0.5373,0.4607,-0.0766,negative,"Boundary task; focused adaptation does not help this task"

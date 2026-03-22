@@ -1,0 +1,10 @@
+{
+  "train": "research_data/processed/rond/text_classification/train.jsonl",
+  "val": "research_data/processed/rond/text_classification/val.jsonl",
+  "test": "research_data/processed/rond/text_classification/test.jsonl",
+  "output_dir": "results/rond/text_classification/tfidf_logreg",
+  "ngram_max": 2,
+  "max_features": 20000,
+  "c": 1.0,
+  "seed": 42
+}

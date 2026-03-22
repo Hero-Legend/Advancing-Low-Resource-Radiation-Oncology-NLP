@@ -1,0 +1,17 @@
+[
+  {
+    "name": "pubmedbert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/PubMedBert",
+    "use_class_weights": true
+  },
+  {
+    "name": "biolinkbert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/BioLinkBERT",
+    "use_class_weights": true
+  },
+  {
+    "name": "biobert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/biobert",
+    "use_class_weights": true
+  }
+]

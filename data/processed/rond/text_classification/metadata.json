@@ -1,0 +1,11 @@
+{
+    "source_file":  "F:\\codex-workspace\\research_data\\Radiation-Oncology-NLP-Database\\2-Text Classification\\Text_Classification.csv",
+    "num_examples":  100,
+    "labels":  [
+                   "Photon therapy",
+                   "Proton therapy"
+               ],
+    "train_size":  70,
+    "val_size":  10,
+    "test_size":  20
+}

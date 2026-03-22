@@ -1,0 +1,7 @@
+[
+  {
+    "name": "pubmedbert_focused_adaptation_weighted",
+    "model_name": "results/domain_adaptation/pubmedbert_public_radonc_focused_mlm_e1",
+    "use_class_weights": true
+  }
+]

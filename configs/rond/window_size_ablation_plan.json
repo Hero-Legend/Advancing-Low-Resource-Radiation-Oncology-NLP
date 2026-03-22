@@ -1,0 +1,17 @@
+{
+  "task": "paper1_window_size_ablation",
+  "raw_jsonl": "data/corpora/public_radonc_adaptation.jsonl",
+  "keywords_file": "data/manifests/public_radonc_keywords.txt",
+  "tokenizer_model": "/gz-fs/Bi-mamba/model_path/PubMedBert",
+  "base_model": "/gz-fs/Bi-mamba/model_path/PubMedBert",
+  "train": "research_data/processed/rond/text_classification/train.jsonl",
+  "val": "research_data/processed/rond/text_classification/val.jsonl",
+  "test": "research_data/processed/rond/text_classification/test.jsonl",
+  "window_sizes": [0, 1, 2, 3, 4],
+  "seeds": [7, 13, 21, 42, 87],
+  "adaptation_epochs": 1,
+  "train_batch_size": 8,
+  "learning_rate": 5e-5,
+  "max_seq_length": 256,
+  "output_root": "results/rond/window_size_ablation"
+}

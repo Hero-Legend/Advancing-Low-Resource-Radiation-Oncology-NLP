@@ -1,0 +1,7 @@
+[
+  {
+    "name": "bioclinicalbert_weighted",
+    "model_name": "/gz-fs/Bi-mamba/model_path/Bio_ClinicalBERT",
+    "use_class_weights": true
+  }
+]
