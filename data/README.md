@@ -1,27 +1,42 @@
 # Data Notes
 
-This repository ships only public or public-derived artifacts.
+This folder contains only public or public-derived artifacts that are lightweight enough to distribute directly.
 
 ## Included
 
+### Keyword Manifest
+
 - `manifests/public_radonc_keywords.txt`
-  - manually curated keyword manifest used for focused corpus construction
+  - manually curated radiation-oncology keyword list used for focused corpus construction
+
+### Processed Benchmark Assets
+
 - `processed/rond/`
-  - processed ROND benchmark task splits used in the released experiments
+  - processed public ROND splits used by the released experiments
 
 ## Not Included
 
-- large regenerated adaptation corpora downloaded from public upstream sources
-- remote training checkpoints
-- transient run logs from GPU servers
+The following artifacts are intentionally omitted:
 
-These omitted artifacts can be reconstructed with the scripts in `scripts/public_corpus/` and `scripts/domain_adaptation/`.
+- large regenerated adaptation corpora derived from public upstream sources
+- remote checkpoints
+- server-side transient logs
+- manuscript-facing result exports
 
-## Public Upstream Sources
+## Reconstruction
+
+The omitted public corpora can be rebuilt with:
+
+- `scripts/public_corpus/build_nci_pdq_corpus.py`
+- `scripts/public_corpus/build_pmc_manifest.py`
+- `scripts/public_corpus/build_keyword_focused_corpus.py`
+- `scripts/public_corpus/compile_public_radonc_corpus.py`
+
+## Upstream Public Sources
 
 - ROND
 - NCI PDQ
 - PMC Open Access
 - PubMedQA
 
-Please follow the original source terms when redistributing regenerated corpora.
+Please follow the original source licenses and access terms when redistributing regenerated corpora.

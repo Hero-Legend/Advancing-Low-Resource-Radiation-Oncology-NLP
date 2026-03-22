@@ -1,82 +1,128 @@
 # Advancing Low-Resource Radiation Oncology NLP
 
-This repository contains the public reproducibility package for our radiation oncology NLP study:
+Public reproducibility package for the study:
 
 **Advancing Low-Resource Radiation Oncology NLP: Keyword-Focused Domain Adaptation via Public Corpora**
 
-The project studies how public-data-only adaptation behaves in a highly specialized radiation oncology NLP setting. Rather than assuming that narrowly filtered in-domain text is always better, we examine when focused adaptation helps, when it fails, and how replay-regularized adaptation affects external generalization.
+## Overview
 
-## What Is Included
+This repository releases the code, configurations, keyword manifest, and processed public benchmark assets used to study public-data-only adaptation for radiation oncology NLP.
 
-- `scripts/`
-  - public corpus construction
-  - ROND preprocessing and downstream training
-  - continued pretraining / replay-regularized adaptation
-  - robustness analysis utilities
-- `configs/`
-  - experiment configuration files used in the released study workflow
-- `data/manifests/`
-  - manually curated radiation-oncology keyword list
+The project asks a focused question: when does narrow, radiation-oncology-specific adaptation help low-resource clinical NLP, and when does it fail? Rather than treating in-domain adaptation as universally beneficial, the study examines corpus construction, robustness, and external generalization under privacy-preserving constraints.
+
+## Study Scope
+
+The released workflow covers:
+
+- public corpus construction from NCI PDQ and PMC
+- keyword-focused sentence-window extraction
+- continued pretraining of biomedical encoders
+- downstream evaluation on public ROND tasks
+- robustness analyses, including repeated cross-validation and small-sample checks
+- leakage-controlled external validation with PubMedQA
+
+## Released Artifacts
+
+### Code
+
+- `scripts/public_corpus/`
+  - corpus building, filtering, and replay-corpus preparation
+- `scripts/domain_adaptation/`
+  - continued pretraining and adaptation-round orchestration
+- `scripts/rond/`
+  - ROND preprocessing, multi-seed runs, and downstream training
+- `scripts/analysis/`
+  - robustness summaries and post-hoc analysis helpers
+
+### Configurations
+
+- `configs/rond/`
+  - released experiment configurations for ROND-based analyses
+- `configs/pubmedqa/`
+  - configurations for leakage-controlled external validation
+
+### Public Data Assets
+
+- `data/manifests/public_radonc_keywords.txt`
+  - manually curated radiation-oncology keyword lexicon used for focused corpus construction
 - `data/processed/rond/`
-  - processed public ROND task splits used in the released experiments
-- `results/`
-  - placeholder structure for regenerated experiment outputs
+  - processed public ROND splits used by the released experiments
 
-## What Is Not Included
+### Runtime Layout
+
+- `results/`
+  - placeholder directory for regenerated outputs
+
+## Intentionally Not Released
+
+This repository does **not** ship:
 
 - manuscript snapshots
 - paper-facing result tables
-- remote checkpoints and large transient training artifacts
+- remote checkpoints
+- transient server-side run logs
+- large regenerated corpora mirrored from public upstream sources
 
-## Main Study Questions
+Those artifacts are omitted to keep the public package clean, lightweight, and focused on reproducibility rather than paper packaging.
 
-We focus on four questions:
-
-1. Can keyword-focused public domain adaptation help low-resource radiation oncology NLP?
-2. How sensitive are the results to corpus construction choices such as sentence-window size?
-3. Does the method remain competitive against other biomedical / clinical encoder baselines?
-4. Can controlled replay regularization improve external generalization under a leakage-controlled setup?
-
-## Repository Layout
+## Repository Structure
 
 ```text
 .
-├── configs/
-│   ├── pubmedqa/
-│   └── rond/
-├── data/
-│   ├── manifests/
-│   └── processed/
-│       └── rond/
-├── results/
-└── scripts/
-    ├── analysis/
-    ├── domain_adaptation/
-    ├── public_corpus/
-    └── rond/
++-- configs/
+|   +-- pubmedqa/
+|   \-- rond/
++-- data/
+|   +-- manifests/
+|   \-- processed/
+|       \-- rond/
++-- results/
+\-- scripts/
+    +-- analysis/
+    +-- domain_adaptation/
+    +-- public_corpus/
+    \-- rond/
 ```
+
+## Reproducibility Path
+
+Recommended order:
+
+1. Inspect the released ROND assets in `data/processed/rond/`.
+2. Review the keyword manifest in `data/manifests/public_radonc_keywords.txt`.
+3. Rebuild public corpora with `scripts/public_corpus/`.
+4. Run continued pretraining with `scripts/domain_adaptation/train_mlm_adaptation.py`.
+5. Launch downstream multi-seed experiments using `configs/rond/`.
+6. Recompute robustness summaries with `scripts/analysis/`.
+7. Recreate external validation with `configs/pubmedqa/`.
 
 ## Reproducibility Notes
 
-- The adaptation pipeline is **public-data-only**.
-- The released keyword lexicon is the exact manifest used for focused corpus construction.
-- The repository includes processed public benchmark splits needed to rerun the released experiments.
-- Large regenerated corpora from NCI PDQ / PMC, paper-facing result exports, and remote training artifacts are intentionally not checked in directly.
-- The external validation protocol on PubMedQA is leakage-controlled: replay text is restricted to the train split only.
-
-## Suggested Reproduction Order
-
-1. Prepare / inspect the processed ROND splits in `data/processed/rond/`.
-2. Review the keyword manifest in `data/manifests/public_radonc_keywords.txt`.
-3. Rebuild public corpora with the scripts in `scripts/public_corpus/`.
-4. Run continued pretraining with `scripts/domain_adaptation/train_mlm_adaptation.py`.
-5. Run downstream multi-seed evaluation using the configs in `configs/rond/`.
-6. Recompute robustness summaries with the analysis scripts in `scripts/analysis/`.
+- The adaptation pipeline is strictly **public-data-only**.
+- The released keyword list is the exact lexicon used for focused corpus construction.
+- The PubMedQA external validation protocol is leakage-controlled: replay text is restricted to the training split only.
+- Large public corpora should be regenerated from the released scripts rather than redistributed directly here.
 
 ## Environment
 
-The experiments were developed in a Python / PyTorch / Hugging Face workflow on remote GPU infrastructure. See `requirements.txt` for the main Python dependencies used by the released scripts.
+The released scripts assume a Python-based machine learning workflow centered on:
 
-## Data and Usage
+- PyTorch
+- Hugging Face Transformers
+- Datasets
+- scikit-learn
 
-All data included here are public or derived from public resources. If you reuse this repository, please keep the source attributions for ROND, NCI PDQ, PMC, and PubMedQA.
+See `requirements.txt` for the dependency list used in the public package.
+
+## Data Sources
+
+This repository uses public or public-derived resources only. Please retain the original attributions and usage terms of:
+
+- ROND
+- NCI PDQ
+- PMC Open Access
+- PubMedQA
+
+## Citation
+
+If you use this repository, please cite the corresponding paper once the final bibliographic entry is available.
